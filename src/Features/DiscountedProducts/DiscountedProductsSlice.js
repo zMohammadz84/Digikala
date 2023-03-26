@@ -5,7 +5,9 @@ export const fetchDiscountedProducts = createAsyncThunk(
   "fetchDiscountedProducts",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get("../../../data/discountedProducts.json");
+      const res = await axios.get(
+        "https://digikala-data.vercel.app/DiscountedProducts"
+      );
       return res.data;
     } catch (error) {
       return rejectWithValue([], error);
