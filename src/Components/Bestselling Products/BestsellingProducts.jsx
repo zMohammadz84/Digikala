@@ -1,8 +1,8 @@
 import React from "react";
-import "./BestsellingProducts.scss";
+import { FreeMode, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ChangerNumToPersian from "../../Utils/ChangerNumToPersian";
-import { FreeMode, Navigation } from "swiper";
+import "./BestsellingProducts.scss";
 
 const BestsellingProducts = () => {
   return (

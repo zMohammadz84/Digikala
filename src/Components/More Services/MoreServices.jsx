@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiArrowLeft, HiOutlineDotsHorizontal } from "react-icons/hi";
 import { HiOutlineXMark } from "react-icons/hi2";
 import "./MoreServices.scss";
@@ -6,11 +6,13 @@ import "./MoreServices.scss";
 const MoreServices = () => {
   const [open, setOpen] = useState(false);
 
-  if (open) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "";
-  }
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [open]);
 
   return (
     <section className="more-services-container max-width-2">

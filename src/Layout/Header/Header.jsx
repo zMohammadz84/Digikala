@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import "./Header.scss";
+import React, { useEffect, useRef, useState } from "react";
+import { FaFire } from "react-icons/fa";
+import { FiMove } from "react-icons/fi";
 import {
   HiArrowNarrowRight,
   HiArrowSmLeft,
@@ -15,13 +16,11 @@ import {
   HiOutlineQuestionMarkCircle,
   HiOutlineXMark,
 } from "react-icons/hi2";
-import MenuMobile from "../../Components/Menu Mobile/MenuMobile";
 import { Link } from "react-router-dom";
-import { FaFire } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FiMove } from "react-icons/fi";
-import { useRef } from "react";
+import MenuMobile from "../../Components/Menu Mobile/MenuMobile";
 import MenuPC from "../../Components/Menu PC/MenuPC";
+import "./Header.scss";
 
 export default function Header() {
   const [show, setShow] = useState(false);
@@ -30,11 +29,13 @@ export default function Header() {
   const [openRegionBox, setOpenRegionBox] = useState(false);
   const navigation = useRef();
 
-  if (openSupport || openSearchBar || openRegionBox || show) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "";
-  }
+  useEffect(() => {
+    if (openSupport || openSearchBar || openRegionBox || show) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [openSupport, openSearchBar, openRegionBox, show]);
 
   const openHandle = () => setShow(true);
   const closeHandle = () => setShow(false);
@@ -43,7 +44,7 @@ export default function Header() {
     e.target.classList.toggle("open");
   };
 
-  const hoverhandler = (e) => {
+  const hoverHandler = (e) => {
     let attribute = e.target.getAttribute("data");
     navigation.current.classList = "";
     navigation.current.classList.add(attribute);
@@ -542,7 +543,7 @@ export default function Header() {
               <a
                 data="link-1"
                 href="#"
-                onMouseEnter={(e) => hoverhandler(e)}
+                onMouseEnter={(e) => hoverHandler(e)}
                 onMouseLeave={(e) => mouseLeaveHandler(e)}
               >
                 در دیجی‌کالا بفروشید!
@@ -550,7 +551,7 @@ export default function Header() {
               <a
                 data="link-2"
                 href="#"
-                onMouseEnter={(e) => hoverhandler(e)}
+                onMouseEnter={(e) => hoverHandler(e)}
                 onMouseLeave={(e) => mouseLeaveHandler(e)}
               >
                 سوالی دارید؟
@@ -559,7 +560,7 @@ export default function Header() {
               <a
                 data="link-3"
                 href="#"
-                onMouseEnter={(e) => hoverhandler(e)}
+                onMouseEnter={(e) => hoverHandler(e)}
                 onMouseLeave={(e) => mouseLeaveHandler(e)}
               >
                 شگفت‌انگیزها
@@ -567,7 +568,7 @@ export default function Header() {
               <a
                 data="link-4"
                 href="#"
-                onMouseEnter={(e) => hoverhandler(e)}
+                onMouseEnter={(e) => hoverHandler(e)}
                 onMouseLeave={(e) => mouseLeaveHandler(e)}
               >
                 تخفیف‌ها و پیشنهادها
@@ -575,7 +576,7 @@ export default function Header() {
               <a
                 data="link-5"
                 href="#"
-                onMouseEnter={(e) => hoverhandler(e)}
+                onMouseEnter={(e) => hoverHandler(e)}
                 onMouseLeave={(e) => mouseLeaveHandler(e)}
               >
                 پرفروش‌ترین‌ها
@@ -583,7 +584,7 @@ export default function Header() {
               <a
                 data="link-6"
                 href="#"
-                onMouseEnter={(e) => hoverhandler(e)}
+                onMouseEnter={(e) => hoverHandler(e)}
                 onMouseLeave={(e) => mouseLeaveHandler(e)}
               >
                 سوپرمارکت
@@ -591,7 +592,7 @@ export default function Header() {
               <hr />
               <div
                 data="link-7"
-                onMouseEnter={(e) => hoverhandler(e)}
+                onMouseEnter={(e) => hoverHandler(e)}
                 onMouseOver={(e) => setShow(true)}
                 onMouseLeave={(e) => mouseLeaveHandler(e)}
               >

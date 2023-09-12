@@ -1,35 +1,46 @@
-import React from "react";
+import React, { useRef } from "react";
 import { HiChevronLeft } from "react-icons/hi";
 import "./MenuPC.scss";
 
+const data = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
+
 export default function MenuPC({ show, setShow }) {
+  const containerMegaMenuRef = useRef();
+
   const hoverHandler = (e) => {
+    let categoriesArr = [];
     let index = e.target.getAttribute("index");
 
-    // Get Elements
-    const categoryMainContainer = document.querySelectorAll(
-      ".category-main-container"
+    //  Handle Mega Menu Tabs
+    containerMegaMenuRef.current.childNodes[0].childNodes.forEach((tab) =>
+      tab.classList.remove("active")
     );
-    const asideItems = document.querySelectorAll("div[index]");
-
-    // Remove Class
-    categoryMainContainer.forEach((container) =>
-      container.classList.remove("active")
+    containerMegaMenuRef.current.childNodes[0].childNodes[index].classList.add(
+      "active"
     );
-    asideItems.forEach((item) => item.classList.remove("active"));
 
-    // Add Class
-    categoryMainContainer[index].classList.add("active");
-    asideItems[index].classList.add("active");
+    //  Split Categories
+    containerMegaMenuRef.current.childNodes.forEach((element) => {
+      if (element.classList.contains("category-main-container")) {
+        categoriesArr.push(element);
+      }
+    });
+
+    //  Handle Mega Menu Categories
+    categoriesArr.forEach((category) => category.classList.remove("active"));
+    categoriesArr[index].classList.add("active");
   };
-
 
   return (
     <div
       className={` backdrop-menu-PC ${show && "open"}`}
       onMouseOver={(e) => e.stopPropagation()}
     >
-      <div className="container-menu-PC" onMouseLeave={() => setShow(false)}>
+      <div
+        className="container-menu-PC"
+        onMouseLeave={() => setShow(false)}
+        ref={containerMegaMenuRef}
+      >
         {/* Aside */}
         <aside className="aside-PC">
           <div
